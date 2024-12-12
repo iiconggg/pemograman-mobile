@@ -11,6 +11,15 @@ class register extends StatefulWidget {
 
 // ignore: camel_case_types
 class _registerState extends State<register> {
+  bool _isChecked = false;
+  final TextEditingController _namaController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FocusNode _namaFocusNode = FocusNode();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+  bool _isPasswordVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +34,7 @@ class _registerState extends State<register> {
                 color: Colors.black,
                 fontSize: 33,
               ),
-              textAlign: TextAlign.center, // Menyetel teks ke alignment tengah
+              textAlign: TextAlign.center,
             ),
           ),
           Positioned(
@@ -42,88 +51,99 @@ class _registerState extends State<register> {
           SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.49,
+                top: MediaQuery.of(context).size.height * 0.44,
                 left: 20,
                 right: 20,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Teks "Email" di atas kotak input
+                  
+                  
                   const Padding(
                     padding: EdgeInsets.only(
                       bottom: 8.0,
                       left: 20,
-                    ), // Jarak antara teks "Email" dan kotak input
+                    ), 
                     child: Text(
                       "NAMA",
                       style: TextStyle(
-                        fontSize: 18, // Ukuran font teks "Email"
-                        fontWeight: FontWeight.bold, // Ketebalan teks
+                        fontSize: 18, 
+                        fontWeight: FontWeight.bold, 
                       ),
                     ),
                   ),
 
                   TextField(
-                    decoration: InputDecoration(
-                      hintText: "Masukan Nama Lengkap Anda",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      controller: _namaController,
+                      focusNode: _namaFocusNode,
+                      decoration: InputDecoration(
+                        hintText: "Masukan Nama Lengkap Anda",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        contentPadding:
+                            const EdgeInsets.only(left: 20, right: 16),
                       ),
-                      contentPadding:
-                          const EdgeInsets.only(left: 20, right: 16),
-                    ),
-                  ),
+                      onTap: () {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                      }),
                   const SizedBox(
                     height: 30,
                   ),
 
-                  // Teks "Password" di atas kotak input
                   const Padding(
                     padding: EdgeInsets.only(
                       bottom: 8.0,
                       left: 20,
-                    ), // Jarak antara teks "Password" dan kotak input
+                    ), 
                     child: Text(
                       "EMAIL",
                       style: TextStyle(
-                        fontSize: 18, // Ukuran font teks "Password"
-                        fontWeight: FontWeight.bold, // Ketebalan teks
+                        fontSize: 18, 
+                        fontWeight: FontWeight.bold, 
                       ),
                     ),
                   ),
 
                   TextField(
-                    decoration: InputDecoration(
-                      hintText: "Masukan Email Anda",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      controller: _emailController,
+                      focusNode: _emailFocusNode,
+                      decoration: InputDecoration(
+                        hintText: "Masukan Email Anda",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        contentPadding:
+                            const EdgeInsets.only(left: 20, right: 16),
                       ),
-                      contentPadding:
-                          const EdgeInsets.only(left: 20, right: 16),
-                    ),
-                  ),
+                      onTap: () {
+                        FocusScope.of(context).requestFocus(
+                            FocusNode()); 
+                      }),
                   const SizedBox(
                     height: 30,
                   ),
 
-                  // Teks "Password" di atas kotak input
+                  
                   const Padding(
                     padding: EdgeInsets.only(
                       bottom: 8.0,
                       left: 20,
-                    ), // Jarak antara teks "Password" dan kotak input
+                    ), 
                     child: Text(
                       "Kata Sandi",
                       style: TextStyle(
-                        fontSize: 18, // Ukuran font teks "Password"
-                        fontWeight: FontWeight.bold, // Ketebalan teks
+                        fontSize: 18, 
+                        fontWeight: FontWeight.bold, 
                       ),
                     ),
                   ),
 
                   TextField(
-                    obscureText: true,
+                    controller: _passwordController,
+                    focusNode: _passwordFocusNode,
+                    obscureText: !_isPasswordVisible,
                     decoration: InputDecoration(
                       fillColor: Colors.grey,
                       hintText: "Masukan Kata Sandi Anda",
@@ -132,8 +152,62 @@ class _registerState extends State<register> {
                       ),
                       contentPadding:
                           const EdgeInsets.only(left: 20, right: 16),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                      ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 20, 
+                  ),
+
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _isChecked = !_isChecked;
+                          });
+                        },
+                        child: Container(
+                          width: 20,
+                          height: 20,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey),
+                            color:
+                                _isChecked ? Colors.blue : Colors.transparent,
+                          ),
+                          child: _isChecked
+                              ? const Icon(
+                                  Icons.check,
+                                  size: 15,
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      const Text(
+                        "Ingat Akun Ini",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+
                   const SizedBox(
                     height: 40,
                   ),

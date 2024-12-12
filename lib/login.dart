@@ -16,7 +16,7 @@ class _myloginState extends State<mylogin> {
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
-  bool _isPasswordVisible = false; // Untuk mengontrol visibilitas password
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _myloginState extends State<mylogin> {
                 letterSpacing: 3,
                 fontSize: 33,
               ),
-              textAlign: TextAlign.center, // Menyetel teks ke alignment tengah
+              textAlign: TextAlign.center,
             ),
           ),
           Positioned(
@@ -57,21 +57,19 @@ class _myloginState extends State<mylogin> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Teks "Email" di atas kotak input
                   const Padding(
                     padding: EdgeInsets.only(
                       bottom: 8.0,
                       left: 20,
-                    ), // Jarak antara teks "Email" dan kotak input
+                    ),
                     child: Text(
                       "Email",
                       style: TextStyle(
-                        fontSize: 18, // Ukuran font teks "Email"
-                        fontWeight: FontWeight.bold, // Ketebalan teks
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-
                   TextField(
                       controller: _emailController,
                       focusNode: _emailFocusNode,
@@ -84,28 +82,24 @@ class _myloginState extends State<mylogin> {
                             const EdgeInsets.only(left: 20, right: 16),
                       ),
                       onTap: () {
-                        FocusScope.of(context).requestFocus(
-                            FocusNode()); // Hilangkan fokus tanpa memanggil setState
+                        FocusScope.of(context).requestFocus(FocusNode());
                       }),
                   const SizedBox(
                     height: 40,
                   ),
-
-                  // Teks "Password" di atas kotak input
                   const Padding(
                     padding: EdgeInsets.only(
                       bottom: 8.0,
                       left: 20,
-                    ), // Jarak antara teks "Password" dan kotak input
+                    ),
                     child: Text(
                       "Kata Sandi",
                       style: TextStyle(
-                        fontSize: 18, // Ukuran font teks "Password"
-                        fontWeight: FontWeight.bold, // Ketebalan teks
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-
                   TextField(
                       controller: _passwordController,
                       focusNode: _passwordFocusNode,
@@ -132,10 +126,8 @@ class _myloginState extends State<mylogin> {
                         ),
                       ),
                       onTap: () {
-                        // Menghilangkan cursor saat klik di luar TextField
                         FocusScope.of(context).requestFocus(FocusNode());
                       }),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -191,7 +183,6 @@ class _myloginState extends State<mylogin> {
                       ),
                     ],
                   ),
-
                   const SizedBox(
                     height: 40,
                   ),
@@ -226,23 +217,16 @@ class _myloginState extends State<mylogin> {
                         },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 12,
-                              horizontal:
-                                  40), // Menambah padding agar lebih besar
+                              vertical: 12, horizontal: 40),
                           decoration: BoxDecoration(
-                            color: const Color(
-                                0xff6C63FE), // Background color for the box
-                            borderRadius:
-                                BorderRadius.circular(30), // Rounded corners
-                            border: Border.all(
-                                color: Colors
-                                    .transparent), // Border, if you need one
+                            color: const Color(0xff6C63FE),
+                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(color: Colors.transparent),
                           ),
                           child: const Text(
                             'Daftar Akun Baru',
                             style: TextStyle(
-                              color: Colors
-                                  .white, // White text color inside the box
+                              color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),

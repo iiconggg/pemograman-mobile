@@ -12,7 +12,7 @@ class UnderConstructionPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'asset/images/undraw_tree_swing_re_pqee.jpg', // Pastikan path gambar benar
+              'asset/images/undraw_tree_swing_re_pqee.jpg', 
               height: 300.0,
               width: 300.0,
               fit: BoxFit.contain,
@@ -30,7 +30,7 @@ class UnderConstructionPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context); // Kembali ke halaman sebelumnya
+                Navigator.pop(context); 
               },
               child: const Text("Kembali"),
             )

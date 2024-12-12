@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'loadingpage.dart';
 import 'login.dart';
 import 'registration.dart';
-import 'perbaikan_page.dart'; // Import the correct page for under construction
+import 'perbaikan_page.dart'; 
 
 void main() {
   runApp(MaterialApp(
-    debugShowCheckedModeBanner: false, // Hilangkan banner debug
+    debugShowCheckedModeBanner: false, 
     home: const LoadingPage(),
     routes: {
       'login': (context) => const mylogin(),
       'register': (context) => const register(),
       'perbaikan': (context) =>
-          const UnderConstructionPage(), // Correct the route
+          const UnderConstructionPage(), 
     },
   ));
 }
@@ -221,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _getProfile,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), 
     );
   }
 }*/

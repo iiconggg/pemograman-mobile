@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'login.dart'; // Halaman login
+import 'login.dart'; 
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({super.key});
@@ -14,14 +14,13 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
     super.initState();
-    // Mengatur durasi loading, misalnya 3 detik, lalu navigasi ke login
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) =>
-                const mylogin(), // Menavigasi ke halaman login
+                const mylogin(),
           ),
         );
       }
