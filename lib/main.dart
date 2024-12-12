@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
+import 'loadingpage.dart';
+import 'login.dart';
+import 'registration.dart';
+import 'perbaikan_page.dart'; // Import the correct page for under construction
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false, // Hilangkan banner debug
+    home: const LoadingPage(),
+    routes: {
+      'login': (context) => const mylogin(),
+      'register': (context) => const register(),
+      'perbaikan': (context) =>
+          const UnderConstructionPage(), // Correct the route
+    },
+  ));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,11 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   String _getAge(String birthdate) {
-    //parse string to date
     var parseDate = DateTime.parse(birthdate);
-    //set current date variable
     var today = DateTime.now();
-    //set date diff
     final yy = today.year - parseDate.year;
     final mm = today.month - parseDate.month;
     final dd = today.day - parseDate.day;
@@ -258,10 +267,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        //set the app bar title
         title: Text('Daftar Profile'),
       ),
       body: ListView(
@@ -286,11 +293,9 @@ class Person {
   String? birthdate;
   String? gender;
 
-  //Metode convert gender input to text
   String convertGender(String gender) {
     var result = "";
 
-    //Condition to convert gender code to text
     if (gender == 'L') {
       result = 'Laki-laki';
     } else if (gender == 'P') {
@@ -302,19 +307,14 @@ class Person {
     return result;
   }
 
-  //methode convert birthdate to age
   String getAge(String birthdate) {
-    // Parse string to date
     var parseDate = DateTime.parse(birthdate);
-    // Set current date variable
     var today = DateTime.now();
 
-    // Calculate year difference
     int yy = today.year - parseDate.year;
     int mm = today.month - parseDate.month;
     int dd = today.day - parseDate.day;
 
-    // Adjust days and months if needed
     if (dd < 0) {
       mm--;
       dd += DateTime(today.year, today.month - 1, 0).day;
@@ -333,7 +333,8 @@ class Person {
     var sex = convertGender(gender);
     var message = '$fullname \n$sex\nUsia $age\n';
 
-    print(message); // Tambahkan print untuk menampilkan pesan ke output
+    // ignore: avoid_print
+    print(message);
   }
 }
 
@@ -355,16 +356,14 @@ class OOPExample extends StatelessWidget {
       'gender': 'P',
     }
   ];
-
-  Person person = Person();
-
   OOPExample({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Person person = Person();
+
     return Scaffold(
         appBar: AppBar(
-          //set the app bar title
           title: const Text('Daftar Profil'),
         ),
         body: ListView(
